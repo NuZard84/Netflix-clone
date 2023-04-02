@@ -1,7 +1,29 @@
-export default function Home() {
+import { getSession, signOut } from "next-auth/react";
+import { NextPageContext } from "next";
+import useCurrentUser from "@/hooks/useCurrentUser";
+import Navbar from '@/components/navbar'
+
+async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: { destination: "/auth", permanent: false },
+    };
+  }
+  return {
+    props: {},
+  };
+}
+
+function Home() {
+  const { data: user } = useCurrentUser();
   return (
-    <h1 className="text-3xl font-bold text-green-500 underline">
-      Hello world!
-    </h1>
+    <>
+     <Navbar />
+    </>
   );
 }
+
+export { getServerSideProps };
+export default Home;

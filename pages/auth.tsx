@@ -18,8 +18,8 @@ const Auth = () => {
     setVarient((cur) => (cur === "login" ? "register" : "login"));
   }, []);
 
-  const handleGithubSignIn = () => signIn("github", { callbackUrl: "/" });
-  const handleGoogleSignIn = () => signIn("google", { callbackUrl: "/" });
+  const handleGithubSignIn = () => signIn("github", { callbackUrl: "/profile" });
+  const handleGoogleSignIn = () => signIn("google", { callbackUrl: "/profile" });
 
   const login = useCallback(async () => {
     try {
@@ -27,10 +27,10 @@ const Auth = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/profile",
       });
 
-      router.push("/");
+      router.push("/profile");
     } catch (error) {
       console.log(error);
     }
