@@ -18,8 +18,10 @@ const Auth = () => {
     setVarient((cur) => (cur === "login" ? "register" : "login"));
   }, []);
 
-  const handleGithubSignIn = () => signIn("github", { callbackUrl: "/profile" });
-  const handleGoogleSignIn = () => signIn("google", { callbackUrl: "/profile" });
+  const handleGithubSignIn = () =>
+    signIn("github", { callbackUrl: "/profile" });
+  const handleGoogleSignIn = () =>
+    signIn("google", { callbackUrl: "/profile" });
 
   const login = useCallback(async () => {
     try {

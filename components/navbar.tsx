@@ -1,12 +1,17 @@
 import NavbarItem from "./navbarItem";
 import MobileMenu from "./mobileMenu";
 import AccountMenu from "./accountMenu";
+import { useRouter } from "next/router";
 import { BsChevronDown, BsChevronLeft, BsSearch, BsBell } from "react-icons/bs";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+const TOP_OFFSET = 66;
 
 const Navbar = () => {
+  const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
   const [showAccountMenu, setAccountMenu] = useState(false);
+  const [showBackground, setShowBackground] = useState(false);
 
   const toggleShowMenu = useCallback(() => {
     setShowMenu((cur) => !cur);
@@ -16,11 +21,36 @@ const Navbar = () => {
     setAccountMenu((cur) => !cur);
   }, []);
 
+  useEffect(() => {
+    const handleScoll = () => {
+      if (window.scrollY >= TOP_OFFSET) {
+        setShowBackground(true);
+      } else {
+        setShowBackground(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScoll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScoll);
+    };
+  }, []);
+
   return (
     <nav className="fixed z-40 w-full">
-      <div className="flex flex-row items-center px-4 py-6 transition duration-500 md:px-16 bg-zinc-900 bg-opacity-90">
+      <div
+        className={`flex flex-row items-center px-4 py-6 transition duration-500 md:px-16 ${
+          showBackground && "bg-zinc-900 bg-opacity-90" 
+        }`}
+      >
         <div>
-          <img className="h-4 lg:h-8" src="/images/logo.png" alt="Logo" />
+          <img
+            onClick={() => {}}
+            className="h-4 lg:h-8"
+            src="/images/logo.png"
+            alt="Logo"
+          />
         </div>
         <div className="flex-row hidden ml-8 gap-7 lg:flex">
           <NavbarItem label="Home" />
@@ -35,7 +65,9 @@ const Navbar = () => {
           className="relative flex flex-row items-center justify-center gap-2 ml-8 lg:hidden"
         >
           <p className="text-sm text-white">Browse</p>
-          <BsChevronDown className="ml-2 text-white transition" />
+          <BsChevronDown
+            className={`ml-2 text-white transition ${showMenu && "rotate-90"}`}
+          />
           <MobileMenu visible={showMenu} />
         </div>
         <div className="flex flex-row items-center ml-auto gap-7">
@@ -53,7 +85,11 @@ const Navbar = () => {
               <img src="/images/default-blue.png" alt="User" />
             </div>
             <div>
-              <BsChevronDown className={`ml-2 text-white transition ${showAccountMenu && 'rotate-90'} `} />
+              <BsChevronDown
+                className={`ml-2 text-white transition ${
+                  showAccountMenu && "rotate-90"
+                } `}
+              />
               <AccountMenu visible={showAccountMenu} />
             </div>
           </div>
