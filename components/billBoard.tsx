@@ -19,12 +19,19 @@ const BillBoard = () => {
         poster={data?.thumbnailUrl}
         className="w-full h-[56.25vw] object-cover brightness-[75%]"
       ></video>
-      <button onClick={handleMute} className="absolute top-[91%] ml-5 p-2 opacity-50 text-xl rounded-md bg-white g-white hover:opacity-30 transition duration-300">{Mute ? <VscMute /> : <VscUnmute />}</button>
+      <button
+        onClick={handleMute}
+        className="absolute top-[91%] ml-2 p-1 opacity-50 text-[12px] md:text-[16px] lg:text-[20px] md:ml-3 lg:ml-5 md:p-2 lg:p-2 rounded-md bg-white g-white hover:opacity-30 transition duration-300"
+      >
+        {Mute ? <VscMute /> : <VscUnmute />}
+      </button>
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
         <p className="h-full text-white text-1x1 md:text-5xl w-[50%] lg:text-6xl font-bold drop-shadow-xl">
           {data?.title}
         </p>
-        <p></p>
+        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[60%] drop-shadow-xl">
+          {data?.description}
+        </p>
       </div>
     </div>
   );
