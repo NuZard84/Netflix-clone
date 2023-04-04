@@ -25,11 +25,11 @@ const BillBoard = () => {
       >
         {Mute ? <VscMute /> : <VscUnmute />}
       </button>
-      <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
+      <div className="absolute top-[40%] md:top-[50%] ml-4 md:ml-16">
         <p className="h-full text-white text-1x1 md:text-5xl w-[50%] lg:text-6xl font-bold drop-shadow-xl">
           {data?.title}
         </p>
-        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[60%] drop-shadow-xl">
+        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[69%] md:w-[75%] lg:w-[60%] drop-shadow-xl">
           {data?.description}
         </p>
       </div>
