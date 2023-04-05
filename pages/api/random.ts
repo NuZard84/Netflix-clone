@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import prismadb from "@/lib/prismadb";
-import serverAuth from "@/lib/serverAuth";
+import prismadb from "@/libs/prismadb";
+import serverAuth from "@/libs/serverAuth";
 
 export default async function handler(
   req: NextApiRequest,
@@ -20,7 +20,7 @@ export default async function handler(
     const randomMovie = await prismadb.movie.findMany({
       take: 1, //this will use to take certain mount of number
       skip: randomIndex, //this will use to skip certai data to the 'skip' Index...
-      
+
       // where: {
       //   title: "Your Name",
       // },

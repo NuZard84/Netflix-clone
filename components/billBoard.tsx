@@ -6,7 +6,7 @@ import {AiOutlineInfoCircle} from 'react-icons/ai'
 const BillBoard = () => {
   const { data } = useBillboard();
   const [Mute, setMute] = useState(true);
-  console.log(data);
+  // console.log(data);
   const handleMute = () => {
     setMute((cur) => !cur);
   };
@@ -30,7 +30,7 @@ const BillBoard = () => {
         <p className="h-full text-white text-1x1 md:text-5xl w-[50%] lg:text-6xl font-bold drop-shadow-xl">
           {data?.title}
         </p>
-        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[75%] md:w-[69%] lg:w-[65%] drop-shadow-xl">
+        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[70%] md:w-[69%] lg:w-[65%] drop-shadow-xl">
           {data?.description}
         </p>
         <div className="flex flex-row items-center gap-3 mt-2 md:mt-4">

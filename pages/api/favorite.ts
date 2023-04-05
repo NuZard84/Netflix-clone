@@ -1,8 +1,8 @@
 import { without } from "lodash";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import serverAuth from "@/lib/serverAuth";
-import prismadb from "@/lib/prismadb";
+import serverAuth from "@/libs/serverAuth";
+import prismadb from "@/libs/prismadb";
 import Email from "next-auth/providers/email";
 
 export default async function handler(
@@ -67,7 +67,8 @@ export default async function handler(
 
       return res.status(200).json(updatedFavoriteList);
     }
-    
+
+    return res.status(405).end();
   } catch (error) {
     console.log(error);
     return res.status(400).end();
