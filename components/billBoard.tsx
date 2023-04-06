@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { VscMute, VscUnmute } from "react-icons/vsc";
 import useBillboard from "@/hooks/useBillboard";
 import {AiOutlineInfoCircle} from 'react-icons/ai'
+import PlayButton from "./playButton";
+import {BsFillPlayFill } from 'react-icons/bs'
 
 const BillBoard = () => {
   const { data } = useBillboard();
@@ -34,6 +36,8 @@ const BillBoard = () => {
           {data?.description}
         </p>
         <div className="flex flex-row items-center gap-3 mt-2 md:mt-4">
+          <PlayButton movieId={data?.id} />
+        
           <button className="flex flex-row items-center w-auto px-2 py-1 text-xs font-semibold text-white transition bg-white rounded-md bg-opacity-30 md:py-2 md:px-4 lg:text-lg hover:bg-opacity-20">
             <AiOutlineInfoCircle className="mr-1 sm:text-xs"/>More Info
           </button>

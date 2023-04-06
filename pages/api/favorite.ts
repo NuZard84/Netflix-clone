@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import serverAuth from "@/libs/serverAuth";
 import prismadb from "@/libs/prismadb";
-import Email from "next-auth/providers/email";
+
 
 export default async function handler(
   req: NextApiRequest,

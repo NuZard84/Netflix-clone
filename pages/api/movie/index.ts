@@ -10,7 +10,7 @@ export default async function handler(
     return res.status(405).end();
   }
   try {
-    serverAuth(req);
+    await serverAuth(req);
     const movielist = await prismadb.movie.findMany();
 
     return res.status(200).json(movielist);

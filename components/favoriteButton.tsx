@@ -43,8 +43,8 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
   const Icon = isFavorite ? AiOutlineCheck : AiOutlinePlus;
 
   return (
-    <div onClick={toggleFavorite} className="cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 rounded-full border-2 border-white transition flex items-center justify-center hover:bg-neutral-300">
-      <Icon className="text-white" size={25} />
+    <div onClick={toggleFavorite} className="flex items-center justify-center w-6 h-6 p-1 transition border-2 border-white rounded-full cursor-pointer group/item lg:w-10 lg:h-10 hover:bg-neutral-300">
+      <Icon className="text-white" size={22} />
     </div>
   );
 };
