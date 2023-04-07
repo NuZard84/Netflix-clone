@@ -16,9 +16,8 @@ export default NextAuth({
     }),
 
     GoogleProvider({
-      clientId:
-        "893105637022-npu1qqsg8a5pf6q3r60rii6jphaq01po.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
 
     Credentials({
