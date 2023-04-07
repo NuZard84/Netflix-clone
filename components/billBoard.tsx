@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { VscMute, VscUnmute } from "react-icons/vsc";
 import useBillboard from "@/hooks/useBillboard";
 import {AiOutlineInfoCircle} from 'react-icons/ai'
 import PlayButton from "./playButton";
 import {BsFillPlayFill } from 'react-icons/bs'
+import useInfoModel from "@/hooks/useInfoModel";
 
 const BillBoard = () => {
   const { data } = useBillboard();
   const [Mute, setMute] = useState(true);
+  const {openModal} =useInfoModel()
   // console.log(data);
+
+  const handleOpenModal = useCallback(() => {
+      openModal(data?.id)
+  },[openModal,data?.id])
+  
   const handleMute = () => {
     setMute((cur) => !cur);
   };
@@ -28,7 +35,7 @@ const BillBoard = () => {
       >
         {Mute ? <VscMute /> : <VscUnmute />}
       </button>
-      <div className="absolute top-[50%] lg:top-[62%] md:top-[45%] ml-4 md:ml-16">
+      <div className="absolute top-[44%] lg:top-[62%] md:top-[45%] ml-4 md:ml-16">
         <p className="h-full text-white text-1x1 md:text-5xl w-[50%] lg:text-6xl font-bold drop-shadow-xl">
           {data?.title}
         </p>
@@ -37,7 +44,7 @@ const BillBoard = () => {
         </p>
         <div className="flex flex-row items-center gap-3 mt-2 md:mt-4">
           <PlayButton movieId={data?.id} />
-          <button className="flex flex-row items-center w-auto px-2 py-1 text-xs font-semibold text-white transition bg-white rounded-md bg-opacity-30 md:py-2 md:px-4 lg:text-lg hover:bg-opacity-20">
+          <button onClick={handleOpenModal} className="flex flex-row items-center w-auto px-2 py-1 text-xs font-semibold text-white transition bg-white rounded-md bg-opacity-30 md:py-2 md:px-4 lg:text-lg hover:bg-opacity-20">
             <AiOutlineInfoCircle className="mr-1 sm:text-xs"/>More Info
           </button>
         </div>

@@ -5,6 +5,8 @@ import BillBoard from "@/components/billBoard";
 import MovieLists from "@/components/movieList";
 import useMovielist from "@/hooks/useMovielist";
 import useFavorite from "@/hooks/useFavorite";
+import InfoModal from "@/components/infoModal";
+import useInfoModel from "@/hooks/useInfoModel";
 
 async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -22,9 +24,11 @@ async function getServerSideProps(context: NextPageContext) {
 function Home() {
   const { data: movies = [] } = useMovielist();
   const { data: favorites = [] } = useFavorite();
+  const {isOpen , closeModal} = useInfoModel()
 
   return (
     <>
+    <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar />
       <BillBoard />
       <div className="pb-40">
